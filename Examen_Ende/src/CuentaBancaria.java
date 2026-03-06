@@ -1,33 +1,38 @@
 
 public abstract class CuentaBancaria {
 
-    protected String titular;
-    protected double saldo;
+	protected String titular;
+	protected double saldo;
 
-    public CuentaBancaria(String titular, double saldoInicial) {
-        if (saldoInicial < 0) {
-            throw new IllegalArgumentException("El saldo inicial no puede ser negativo");
-        }
-        this.titular = titular;
-        this.saldo = saldoInicial;
-    }
+	public CuentaBancaria(String titular, double saldoInicial) {
+		if (saldoInicial < 0) {
+			throw new IllegalArgumentException("El saldo inicial no puede ser negativo");
+		}
+		this.titular = titular;
+		this.saldo = saldoInicial;
+	}
 
-    public String getTitular() {
-        return titular;
-    }
+	public String getTitular() {
+		return titular;
+	}
 
-    public double getSaldo() {
-        return saldo;
-    }
+	public double getSaldo() {
+		return saldo;
+	}
 
-    public void ingresar(double cantidad) {
+	public void ingresar(double cantidad) {
+		if (cantidad < 0) {
+			throw new IllegalArgumentException("La cantidad a ingresar no puede ser negativa");
+		} else {
+			saldo += cantidad;
+		}
+	}
 
-        saldo += cantidad;
-    }
-
-    public void reintegrar(double cantidad) {
-
-        saldo -= cantidad;
-    }
-
+	public void reintegrar(double cantidad) {
+		if (cantidad < 0 || cantidad > saldo) {
+			throw new IllegalArgumentException("El reintegro no puede ser negativo ni mayor al saldo disponible");
+		} else {
+			saldo -= cantidad;
+		}
+	}
 }
