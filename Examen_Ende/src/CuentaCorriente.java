@@ -10,7 +10,7 @@ public class CuentaCorriente extends CuentaBancaria{
 	}
 	
 	public int CalcularInteres(int comision) {
-		int interes = comision--;
+		int interes = -comision;
 		return interes;
 	}
 
